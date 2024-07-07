@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.test_api, name='test_api'),
     path("car/", include('CarDekho_app.urls')),
+    path("account/", include('user_app.api.urls')),
     path('auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
