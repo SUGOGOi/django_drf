@@ -1,10 +1,13 @@
 from rest_framework import serializers
 from ..models import CarList , ShowroomList, Review
 
+
+#********************************VALIDATOR FOR CARSERIALIZER(NOT WORKING)**********************************
 # def alphanumeric(value):
 #     if not str(value).isalnum():
 #         raise serializers.ValidationError('Only alphanumeric character')
 
+#********************************************USING ONLY SERIALIZER******************************************
 # class CarSerializer(serializers.Serializer):
 #     id  = serializers.IntegerField(read_only=True)
 #     name = serializers.CharField()
@@ -12,7 +15,6 @@ from ..models import CarList , ShowroomList, Review
 #     active = serializers.BooleanField()
 #     chassisnumber = serializers.CharField(validators=[alphanumeric]) # validator
 #     price = serializers.DecimalField(max_digits=9, decimal_places=2)
-
 
 #     def create(self, validated_data):
 #         return CarList.objects.create(**validated_data) 
@@ -27,12 +29,16 @@ from ..models import CarList , ShowroomList, Review
 #         instance.save()
 #         return instance
 
-
+#********************************************USING MODEL SERIALIZER******************************************
 class ReviewSerializer(serializers.ModelSerializer):
+    apiuser = serializers.StringRelatedField(read_only=True)
     class Meta:
         model= Review
-        exclude=('car',)
-        # fields = '__all__'
+        exclude=('car',)  #*****NOT SHOW CAR IN REVIEW_DETAIL(GET) + NO NEED TO GIVE CAR'S ID===> IT TAKE FROM URL
+        # But i want to show CAR in  REVIEW_DETAIL(GET) , currently not working
+        # fields = '__all__' #********************IT INCLUDE ALL THE FIELDS*******************
+    def get_car(self,object):
+        return object.car
 
 
 class CarSerializer(serializers.ModelSerializer):
@@ -63,11 +69,11 @@ class CarSerializer(serializers.ModelSerializer):
     
 
 class ShowroomSerializer(serializers.ModelSerializer):
-
+    #***********************************SHOW DATA OF FOREIGN TABLE*****************************************8
     # cars = CarSerializer(many=True, read_only=True) -------> show all fields
     # cars = serializers.StringRelatedField(many=True, read_only= True) # filed given in __str__ method
-    cars = serializers.PrimaryKeyRelatedField(many=True, read_only= True) 
-    # cars = serializers.HyperlinkedRelatedField(many=True, read_only= True, view_name='cardetail') 
+    # cars = serializers.PrimaryKeyRelatedField(many=True, read_only= True) 
+    cars = serializers.HyperlinkedRelatedField(many=True, read_only= True, view_name='cardetail') 
     class Meta:
         model = ShowroomList
         fields = '__all__'
