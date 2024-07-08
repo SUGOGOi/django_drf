@@ -5,6 +5,8 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 
@@ -26,14 +28,34 @@ class Logout_view(APIView):
             return Response({"success":False, "message":"Invalid token or user not logged in."},status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
-def registration_view(request):
-    if request.method == 'POST':
+# @api_view(['POST'])
+# def registration_view(request):
+#     if request.method == 'POST':
+#         serializer = RegisterSerializer(data=request.data)
+#         data={}
+#         if serializer.is_valid():
+#             account = serializer.save()
+#             data['username'] = account.username
+#             data['email'] = account.email
+
+#             token = Token.objects.get(user = account)
+
+#             data['token'] = token
+#         else:
+#             data = serializer.errors
+#         return Response(data)
+
+class RegistrationView(APIView):
+    def post(self,request):
+        data={}
         serializer = RegisterSerializer(data=request.data)
+        refresh = RefreshToken.for_user(request.user)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+            account = serializer.save()
+            data['username'] = account.username
+            data['email'] = account.email
+            data['token'] = {'refresh':str(refresh),"access":str(refresh.access_token)}
+            return Response(data,status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors)
-        
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 

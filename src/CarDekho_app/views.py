@@ -14,6 +14,8 @@ from rest_framework import mixins
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import ValidationError
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 
 # from django.http import HttpResponse
 # import json
@@ -53,7 +55,7 @@ class Review_create(generics.CreateAPIView):
         serializer.save(car=car) 
 
 class Review_detail(generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [ReviewUserOrReadOnlyPermission]
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
@@ -70,8 +72,8 @@ class Review_detail(generics.RetrieveUpdateDestroyAPIView):
 
 class Reviewlist(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     #****************************************AUTH & PERMISSIONS*****************************************
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [AdminOrReadOnlyPermission]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     # permission_classes = [DjangoModelPermissions]
 
     # queryset = Review.objects.all()
