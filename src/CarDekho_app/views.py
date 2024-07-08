@@ -15,6 +15,8 @@ from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
+from .api_file.throttling import ReviewDetailThrottle, ReviewListThrottling
 
 
 # from django.http import HttpResponse
@@ -55,8 +57,10 @@ class Review_create(generics.CreateAPIView):
         serializer.save(car=car) 
 
 class Review_detail(generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [TokenAuthentication]
     permission_classes = [ReviewUserOrReadOnlyPermission]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'review_detail_scope'
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     
@@ -72,10 +76,11 @@ class Review_detail(generics.RetrieveUpdateDestroyAPIView):
 
 class Reviewlist(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     #****************************************AUTH & PERMISSIONS*****************************************
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [AdminOrReadOnlyPermission]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = 'review_list_scope'
     # permission_classes = [DjangoModelPermissions]
-
     # queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     def get_queryset(self):

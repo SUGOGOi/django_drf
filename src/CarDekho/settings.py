@@ -137,9 +137,23 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
 
-        # 'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+
+    # 'DEFAULT_THROTTLE_CLASSES': [
+    #     'rest_framework.throttling.AnonRateThrottle',
+    #     'rest_framework.throttling.UserRateThrottle'
+    #     'rest_framework.throttling.ScopedRateThrottle',
+    # ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '2/minute',
+        'user': '3/minute', #*********FOR EVERY REGISTERED USER 3/minute*****************
+        'throttling_for_review_details':"2/minute", #*********FOR EVERY REGISTERED USER 2/minute***********
+        'throttling_for_review_list':"5/day", #*********FOR EVERY REGISTERED USER 5/DAY*****************
+        'review_detail_scope':"1/min",
+        'review_list_scope':"1/min",
+    }
 }
 
 SIMPLE_JWT = {
