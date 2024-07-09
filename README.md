@@ -36,6 +36,7 @@ This repository provides a comprehensive guide and implementation for building R
 
 4.  Apply makemigrations and migrations, If needed:
     ```bash
+    cd src
     python3 manage.py makemigrations
     python3 manage.py migrate
 5. Superuser details:
