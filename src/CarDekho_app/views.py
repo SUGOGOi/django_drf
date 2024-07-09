@@ -17,6 +17,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
 from .api_file.throttling import ReviewDetailThrottle, ReviewListThrottling
+from .api_file.pagination import ReviewListPagination, ReviewListCursorPagination
 
 
 # from django.http import HttpResponse
@@ -78,8 +79,10 @@ class Reviewlist(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
     #****************************************AUTH & PERMISSIONS*****************************************
     authentication_classes = [TokenAuthentication]
     permission_classes = [AdminOrReadOnlyPermission]
-    throttle_classes = [ScopedRateThrottle]
-    throttle_scope = 'review_list_scope'
+    throttle_classes = [ReviewListThrottling, AnonRateThrottle]
+    # throttle_classes = [ScopedRateThrottle]
+    # throttle_scope = 'review_list_scope'
+    pagination_class = ReviewListCursorPagination
     # permission_classes = [DjangoModelPermissions]
     # queryset = Review.objects.all()
     serializer_class = ReviewSerializer

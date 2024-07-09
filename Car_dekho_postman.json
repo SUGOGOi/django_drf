@@ -1,0 +1,352 @@
+{
+  "info": {
+    "name": "Car dekho",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "ddd",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "token 458874c2a003e5f858b4be41230b3236fb3d6e1c",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/car/showroom/3/review?cursor=cD0yMDI0LTA3LTA2KzEyJTNBMTclM0ExMC44MjYwMTglMkIwMCUzQTAw",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [],
+          "query": [
+            {
+              "key": "cursor",
+              "value": "cD0yMDI0LTA3LTA2KzEyJTNBMTclM0ExMC44MjYwMTglMkIwMCUzQTAw"
+            }
+          ],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "test api",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "path": [],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "bruno",
+      "event": []
+    },
+    {
+      "name": "cardekho",
+      "item": [
+        {
+          "name": "car list",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/car/list/?page=2",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                }
+              ],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "review",
+      "item": [
+        {
+          "name": "get car reviews",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "token 458874c2a003e5f858b4be41230b3236fb3d6e1c",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/car/showroom/3/review",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "review detail",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "token 0f873b93eaf7f72eead76523f4cd2be49e960481",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/car/showroom/review/2",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "jwt auth",
+      "item": [
+        {
+          "name": "create_register_login_RT",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/account/api/token/",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "sumsum",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "password",
+                  "value": "qwe123",
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "refresh token",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/account/api/token/refresh/",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "refresh",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyMDU0MjE5MSwiaWF0IjoxNzIwNDU1NzkxLCJqdGkiOiIwM2EyMzI2OTdiZjE0ZDIxYmM3MTAyZWUxOTZhZDNmZiIsInVzZXJfaWQiOjF9.ItKKhShmXjutu6t7Idd4Ird_oPp-rx441PVC4Oq5f40",
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "token auth",
+      "item": [
+        {
+          "name": "login",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/account/login",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "sumsum",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "password",
+                  "value": "qwe123",
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "logout and delete token",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "token 8b1fbc21a41cc9dd8329b67d8755714b002bf771",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/account/logout",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "register user",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/account/register",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "sample2",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "email",
+                  "value": "sample2@gmail.com",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "password",
+                  "value": "sample2",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "sample2",
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
+}

@@ -150,10 +150,13 @@ REST_FRAMEWORK = {
         'anon': '2/minute',
         'user': '3/minute', #*********FOR EVERY REGISTERED USER 3/minute*****************
         'throttling_for_review_details':"2/minute", #*********FOR EVERY REGISTERED USER 2/minute***********
-        'throttling_for_review_list':"5/day", #*********FOR EVERY REGISTERED USER 5/DAY*****************
+        'throttling_for_review_list':"10/day", #*********FOR EVERY REGISTERED USER 5/DAY*****************
         'review_detail_scope':"1/min",
         'review_list_scope':"1/min",
-    }
+    },
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+    'PAGE_SIZE': 2,
 }
 
 SIMPLE_JWT = {
