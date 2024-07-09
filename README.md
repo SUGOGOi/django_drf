@@ -28,26 +28,27 @@ This repository provides a comprehensive guide and implementation for building R
    
 2. Create a virtual environment:
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 3. Install the dependencies:
     ```bash
     pip install -r requirements.txt
 
-4.  Apply the migrations:
+4.  Apply makemigrations and migrations, If needed:
     ```bash
-    python manage.py migrate
-5. Create a superuser:
-   ```bash
-   python manage.py createsuperuser
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+5. Superuser details:
+   - username : sumsum
+   - password : qwe123
+   
 6. Run the development server:
 
    ```bash
-   python manage.py runserver
+   python3 manage.py runserver
 
 ## Usage
-
-- Access the API documentation at http://127.0.0.1:8000/api-docs/ (if enabled)
+- Check http://127.0.0.1:8000 
 - Interact with the API endpoints using tools like Postman
 - Use the Django admin interface at http://127.0.0.1:8000/admin/ to manage data
 
